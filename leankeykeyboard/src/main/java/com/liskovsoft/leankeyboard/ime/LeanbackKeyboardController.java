@@ -16,11 +16,15 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
+
+import com.liskovsoft.leankeyboard.addons.keyboards.KeyboardInfo;
+import com.liskovsoft.leankeyboard.addons.keyboards.intkeyboards.ResKeyboardInfo;
 import com.liskovsoft.leankeyboard.ime.LeanbackKeyboardContainer.KeyFocus;
 import com.liskovsoft.leankeyboard.ime.pano.util.TouchNavSpaceTracker;
 import com.liskovsoft.leankeykeyboard.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LeanbackKeyboardController implements LeanbackKeyboardContainer.VoiceListener,
                                                    LeanbackKeyboardContainer.DismissListener,
@@ -94,6 +98,12 @@ public class LeanbackKeyboardController implements LeanbackKeyboardContainer.Voi
         setKeyboardContainer(container);
         mContainer.setVoiceListener(this);
         mContainer.setDismissListener(this);
+
+        List<KeyboardInfo> keyboardInfoList = ResKeyboardInfo.getAllKeyboardInfos(context);
+        for (KeyboardInfo keyboardInfo : keyboardInfoList) {
+            keyboardInfo.setEnabled(true);
+        }
+        ResKeyboardInfo.updateAllKeyboardInfos(mContext, keyboardInfoList);
     }
 
     private boolean applyLETVFixesDown(int keyCode) {
