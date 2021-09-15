@@ -2,8 +2,8 @@
 <resources>
     <color name="search_mic_levels_guideline">#ffcccccc</color>
     <color name="search_mic_background">#ffffffff</color>
-    <color name="keyboard_background">#ff384248</color>
-    <color name="key_text_default">#ffeeeeee</color>
+    <color name="keyboard_background">#ff000000</color>
+    <color name="key_text_default">#ffffff</color>
     <color name="ime_selector_focus_color">#66eeeeee</color>
     <color name="ime_selector_color">#26eeeeee</color>
     <color name="candidate_background">#ff263238</color>
