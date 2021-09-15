@@ -100,7 +100,7 @@ public final class LeanKeyPreferences {
     }
 
     public boolean getSuggestionsEnabled() {
-        return mPrefs.getBoolean(SUGGESTIONS_ENABLED, true);
+        return mPrefs.getBoolean(SUGGESTIONS_ENABLED, false);
     }
 
     public void setCyclicNavigationEnabled(boolean enabled) {
