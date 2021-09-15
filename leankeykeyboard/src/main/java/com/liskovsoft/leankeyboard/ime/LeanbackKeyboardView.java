@@ -14,6 +14,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.Keyboard.Key;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -242,6 +243,9 @@ public class LeanbackKeyboardView extends FrameLayout {
                 paint.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
             }
 
+            if (!TextUtils.isDigitsOnly(label) && !label.toUpperCase().equals(label)) {
+                canvas.translate(0, key.height * -0.071f);
+            }
             canvas.drawText(
                     label,
                     (float) ((key.width - padding.left - padding.right) / 2 + padding.left),
