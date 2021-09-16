@@ -427,6 +427,13 @@ public class LeanbackKeyboardController implements LeanbackKeyboardContainer.Voi
                 case KeyEvent.KEYCODE_BUTTON_THUMBL:
                 case KeyEvent.KEYCODE_BUTTON_THUMBR:
                     break;
+                case KeyEvent.KEYCODE_SEARCH:
+                case KeyEvent.KEYCODE_VOICE_ASSIST:
+                    if (eventRepeatCount == 1) {
+                        mContainer.startVoiceRecording();
+                    }
+                    handled = true;
+                    break;
                 default:
                     handled = false;
             }
