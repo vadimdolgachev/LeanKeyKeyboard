@@ -18,7 +18,9 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import androidx.core.text.BidiFormatter;
 import com.liskovsoft.leankeyboard.ime.LeanbackKeyboardController.InputListener;
+import com.liskovsoft.leankeyboard.utils.Analytics;
 import com.liskovsoft.leankeyboard.utils.LeanKeyPreferences;
+import com.liskovsoft.leankeyboard.utils.UncaughtExceptionHandler;
 
 public class LeanbackImeService extends KeyMapperImeService {
     private static final String TAG = LeanbackImeService.class.getSimpleName();
@@ -66,6 +68,10 @@ public class LeanbackImeService extends KeyMapperImeService {
         super.onCreate();
 
         Log.d(TAG, "onCreate");
+
+        Thread.setDefaultUncaughtExceptionHandler(
+                new UncaughtExceptionHandler(getApplicationContext(), true));
+        Analytics.init(getApplicationContext());
 
         initSettings();
     }
