@@ -129,7 +129,7 @@ public class BitmapSoundLevelView extends View {
             final int level = mLevelSource.getSpeechLevel();
             if (level > mPeakLevel) {
                 mPeakLevel = level;
-                mPeakLevelCountDown = 25;
+                mPeakLevelCountDown = 15;
             } else if (mPeakLevelCountDown == 0) {
                 mPeakLevel = Math.max(0, mPeakLevel - 2);
             } else {
@@ -160,11 +160,11 @@ public class BitmapSoundLevelView extends View {
                 canvas.drawCircle((float) centerX, (float) centerY, (float) (mMinimumLevelSize - 3), mPaint);
             }
 
-            if (mTrailLevel != null && mPrimaryLevel != null) {
-                mPaint.setColor(ContextCompat.getColor(getContext(), R.color.search_mic_levels_guideline));
-                mPaint.setStyle(Style.STROKE);
-                canvas.drawCircle((float) centerX, (float) centerY, (float) (centerX - 13), mPaint);
-            }
+//            if (mTrailLevel != null && mPrimaryLevel != null) {
+//                mPaint.setColor(ContextCompat.getColor(getContext(), R.color.search_mic_levels_guideline));
+//                mPaint.setStyle(Style.STROKE);
+//                canvas.drawCircle((float) centerX, (float) centerY, (float) (centerX - 13), mPaint);
+//            }
 
         } else {
             canvas.drawColor(mDisableBackgroundColor);
