@@ -83,6 +83,7 @@ public class BitmapSoundLevelView extends View {
         }
 
         mPaint = new Paint();
+        mPaint.setAntiAlias(true);
         mDestRect = new Rect();
         mEmptyPaint.setFilterBitmap(true);
         mLevelSource = new SpeechLevelSource();
