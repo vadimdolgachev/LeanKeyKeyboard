@@ -20,11 +20,21 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+    signingConfigs {
+        release {
+            storeFile file(STORE_FILE)
+            storePassword STORE_PASSWORD
+            keyAlias KEY_ALIAS
+            keyPassword KEY_PASSWORD
+        }
+    }
     buildTypes {
         release {
             // https://medium.com/@angelhiadefiesta/how-to-obfuscate-in-android-with-proguard-acab47701577
             minifyEnabled true // enable obfuscation
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -66,7 +76,7 @@ android {
             versionCode 11000 + defaultConfig.versionCode
             applicationId "com.liskovsoft.leankeyboard"
             ndk { abiFilters 'armeabi-v7a' }
-            resConfigs "ru"
+            resConfigs "en", "ru"
         }
     }
 }
