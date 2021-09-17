@@ -16,16 +16,16 @@ public class KbSettingsFragment extends BaseSettingsFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        addNextAction(R.string.activate_keyboard, () -> {
-            Intent intent = new Intent(getActivity(), KbActivationActivity.class);
-            startActivity(intent);
-        });
+//        addNextAction(R.string.activate_keyboard, () -> {
+//            Intent intent = new Intent(getActivity(), KbActivationActivity.class);
+//            startActivity(intent);
+//        });
 
-        addNextAction(R.string.change_layout, () -> startGuidedFragment(new KbLayoutFragment()));
+//        addNextAction(R.string.change_layout, () -> startGuidedFragment(new KbLayoutFragment()));
 
         addNextAction(R.string.change_theme, () -> startGuidedFragment(new KbThemeFragment()));
 
-        addNextAction(R.string.misc, () -> startGuidedFragment(new MiscFragment()));
+//        addNextAction(R.string.misc, () -> startGuidedFragment(new MiscFragment()));
 
         addNextAction(R.string.about_desc, () -> startGuidedFragment(new AboutFragment()));
     }
