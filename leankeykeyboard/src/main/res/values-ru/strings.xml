@@ -50,4 +50,5 @@
     <string name="show_launcher_icon_desc">Отображать приложение на домашнем экране</string>
     <string name="enable_cyclic_navigation">Циклическая навигация</string>
     <string name="enable_cyclic_navigation_desc">Циклическая навигация по клавиатуре</string>
+    <string name="recognizer_error_no_match">Ошибка распознавания</string>
 </resources>

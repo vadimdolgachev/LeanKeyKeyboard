@@ -1512,7 +1512,7 @@ public class LeanbackKeyboardContainer {
                     errorMsg = "recognizer error speech timeout";
                     break;
                 case SpeechRecognizer.ERROR_NO_MATCH:
-                    errorMsg = "recognizer error no match";
+                    errorMsg = mContext.getString(R.string.recognizer_error_no_match);
                     break;
                 default:
                     errorMsg = "recognizer other error " + error;

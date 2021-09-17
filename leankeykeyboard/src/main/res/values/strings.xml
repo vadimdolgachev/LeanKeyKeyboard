@@ -61,4 +61,5 @@
     <string name="show_launcher_icon_desc">Show launcher icon</string>
     <string name="enable_cyclic_navigation">Сyclic navigation</string>
     <string name="enable_cyclic_navigation_desc">Сyclic navigation through keyboard</string>
+    <string name="recognizer_error_no_match">Recognizer error no match</string>
 </resources>
