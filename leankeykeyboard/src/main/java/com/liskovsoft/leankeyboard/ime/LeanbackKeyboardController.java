@@ -787,11 +787,12 @@ public class LeanbackKeyboardController implements LeanbackKeyboardContainer.Voi
         mContext.requestHideSelf(InputMethodService.BACK_DISPOSITION_DEFAULT);
     }
 
-    public void onStartInputView() {
+    public void onStartInputView(EditorInfo info) {
         mKeyDownReceived = false;
 
         if (mContainer != null) {
             mContainer.onStartInputView();
+            mContainer.onStartInput(info);
         }
 
         mDoubleClickDetector.reset();

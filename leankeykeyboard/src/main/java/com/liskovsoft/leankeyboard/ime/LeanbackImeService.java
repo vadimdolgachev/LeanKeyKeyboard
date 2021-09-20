@@ -373,7 +373,7 @@ public class LeanbackImeService extends KeyMapperImeService {
     public void onStartInputView(EditorInfo info, boolean restarting) {
         super.onStartInputView(info, restarting);
 
-        mKeyboardController.onStartInputView();
+        mKeyboardController.onStartInputView(info);
         sendBroadcast(new Intent(IME_OPEN));
         if (mKeyboardController.areSuggestionsEnabled()) {
             mSuggestionsFactory.createSuggestions();
