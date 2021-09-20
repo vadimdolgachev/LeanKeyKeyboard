@@ -24,7 +24,7 @@ public class ResizeableLeanbackKeyboardView extends LeanbackKeyboardView {
     }
 
     @Override
-    public void setKeyboard(Keyboard keyboard) {
+    public void setKeyboard(Keyboard keyboard, boolean isAbc, boolean isNum) {
         if (mPrefs.getEnlargeKeyboard()) {
             mKeyTextSize = (int) (mKeyTextSizeOrigin * mSizeFactor);
             mModeChangeTextSize = (int) (mModeChangeTextSizeOrigin * mSizeFactor);
@@ -37,7 +37,7 @@ public class ResizeableLeanbackKeyboardView extends LeanbackKeyboardView {
 
         mPaint.setTextSize(mKeyTextSize);
 
-        super.setKeyboard(keyboard);
+        super.setKeyboard(keyboard, isAbc, isNum);
     }
 
     private Keyboard updateKeyboard(Keyboard keyboard) {

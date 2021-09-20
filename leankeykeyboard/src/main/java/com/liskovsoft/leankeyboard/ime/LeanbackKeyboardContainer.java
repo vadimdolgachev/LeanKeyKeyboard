@@ -386,8 +386,12 @@ public class LeanbackKeyboardContainer {
             case InputType.TYPE_CLASS_DATETIME:
                 mSuggestionsEnabled = true;
                 mVoiceEnabled = false;
-                mInitialMainKeyboard = mAbcKeyboard;
+                mInitialMainKeyboard = mNumKeyboard;
         }
+
+        mMainKeyboardView.setKeyboard(mInitialMainKeyboard,
+                mInitialMainKeyboard==mAbcKeyboard || mInitialMainKeyboard == mSymKeyboard,
+                mInitialMainKeyboard==mNumKeyboard);
 
         if (mSuggestionsEnabled) {
             if ((info.inputType & InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS) != 0) {
@@ -915,9 +919,9 @@ public class LeanbackKeyboardContainer {
     public void onModeChangeClick() {
         dismissMiniKeyboard();
         if (mMainKeyboardView.getKeyboard().equals(mSymKeyboard)) {
-            mMainKeyboardView.setKeyboard(mInitialMainKeyboard);
+            mMainKeyboardView.setKeyboard(mInitialMainKeyboard,true,false);
         } else {
-            mMainKeyboardView.setKeyboard(mSymKeyboard);
+            mMainKeyboardView.setKeyboard(mSymKeyboard,true,false);
         }
     }
 
@@ -984,7 +988,9 @@ public class LeanbackKeyboardContainer {
         }
 
         mKeyboardsContainer.setLayoutParams(params);
-        mMainKeyboardView.setKeyboard(mInitialMainKeyboard);
+        mMainKeyboardView.setKeyboard(mInitialMainKeyboard,
+                mInitialMainKeyboard==mAbcKeyboard || mInitialMainKeyboard == mSymKeyboard,
+                mInitialMainKeyboard==mNumKeyboard);
         mVoiceButtonView.setMicEnabled(mVoiceEnabled);
         resetVoice();
         dismissMiniKeyboard();
@@ -1170,7 +1176,7 @@ public class LeanbackKeyboardContainer {
         } else {
             mInitialMainKeyboard = nextKeyboard.abcKeyboard;
             mAbcKeyboard = nextKeyboard.abcKeyboard;
-            mMainKeyboardView.setKeyboard(nextKeyboard.abcKeyboard);
+            mMainKeyboardView.setKeyboard(nextKeyboard.abcKeyboard, true, false);
 
             mSymKeyboard = nextKeyboard.symKeyboard;
             mNumKeyboard = nextKeyboard.numKeyboard;
@@ -1182,7 +1188,7 @@ public class LeanbackKeyboardContainer {
         KeyboardData keyboard = mKeyboardManager.get();
         mInitialMainKeyboard = keyboard.abcKeyboard;
         mAbcKeyboard = keyboard.abcKeyboard;
-        mMainKeyboardView.setKeyboard(keyboard.abcKeyboard);
+        mMainKeyboardView.setKeyboard(keyboard.abcKeyboard, true, false);
 
         mSymKeyboard = keyboard.symKeyboard;
         mNumKeyboard = keyboard.numKeyboard;

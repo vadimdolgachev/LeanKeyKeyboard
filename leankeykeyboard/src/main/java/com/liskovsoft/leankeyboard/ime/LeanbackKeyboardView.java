@@ -53,6 +53,10 @@ public class LeanbackKeyboardView extends FrameLayout {
     public static final int SHIFT_LOCKED = 2;
     public static final int SHIFT_OFF = 0;
     public static final int SHIFT_ON = 1;
+    private final int mNumRowCount;
+    private final int mNumColCount;
+    private final int mAbcColCount;
+    private final int mAbcRowCount;
     private int mBaseMiniKbIndex = -1;
     private final int mClickAnimDur;
     private final float mClickedScale;
@@ -132,8 +136,12 @@ public class LeanbackKeyboardView extends FrameLayout {
         super(context, attrs);
         Resources res = context.getResources();
         TypedArray styledAttrs = context.getTheme().obtainStyledAttributes(attrs, R.styleable.LeanbackKeyboardView, 0, 0);
-        mRowCount = styledAttrs.getInteger(R.styleable.LeanbackKeyboardView_rowCount, -1);
-        mColCount = styledAttrs.getInteger(R.styleable.LeanbackKeyboardView_columnCount, -1);
+        mAbcRowCount = styledAttrs.getInteger(R.styleable.LeanbackKeyboardView_abcRowCount, -1);
+        mAbcColCount = styledAttrs.getInteger(R.styleable.LeanbackKeyboardView_abcColumnCount, -1);
+        mNumRowCount = styledAttrs.getInteger(R.styleable.LeanbackKeyboardView_numRowCount, -1);
+        mNumColCount = styledAttrs.getInteger(R.styleable.LeanbackKeyboardView_numColumnCount, -1);
+        mRowCount = mAbcRowCount;
+        mColCount = mAbcColCount;
         mKeyTextSize = (int) res.getDimension(R.dimen.key_font_size);
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
@@ -589,7 +597,14 @@ public class LeanbackKeyboardView extends FrameLayout {
 
     }
 
-    public void setKeyboard(Keyboard keyboard) {
+    public void setKeyboard(Keyboard keyboard, boolean isAbc, boolean isNum) {
+        if (isNum) {
+            mRowCount = mNumRowCount;
+            mColCount = mNumColCount;
+        } else {
+            mRowCount = mAbcRowCount;
+            mColCount = mAbcColCount;
+        }
         removeMessages();
         mKeyboard = keyboard;
         setKeys(mKeyboard.getKeys());
