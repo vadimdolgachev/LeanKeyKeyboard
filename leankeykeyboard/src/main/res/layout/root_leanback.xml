@@ -6,6 +6,7 @@
     <View android:id="@+id/candidate_background" android:background="@color/candidate_background" android:layout_width="wrap_content"
           android:layout_height="wrap_content" android:layout_alignBottom="@id/suggestions_container" android:layout_alignParentLeft="true"
           android:layout_alignParentTop="true" android:layout_alignParentRight="true"/>
+    <include layout="@layout/selector"/>
     <HorizontalScrollView android:visibility="gone" android:gravity="center" android:id="@+id/suggestions_container" android:scrollbars="none" android:clipChildren="false"
                           android:layout_width="wrap_content" android:layout_height="@dimen/key_height"
                           android:layout_marginLeft="@dimen/candidate_scroll_view_horz_spacing"
@@ -19,5 +20,4 @@
                   android:layout_centerHorizontal="true">
         <include layout="@layout/input_leanback"/>
     </LinearLayout>
-    <include layout="@layout/selector"/>
 </RelativeLayout>
