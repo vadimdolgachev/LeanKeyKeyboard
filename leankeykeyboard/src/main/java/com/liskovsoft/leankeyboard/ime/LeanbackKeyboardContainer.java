@@ -24,6 +24,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
+import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
@@ -180,6 +181,14 @@ public class LeanbackKeyboardContainer {
             mSpeechRecognizer.cancel();
             mSpeechRecognizer.setRecognitionListener(null);
             mVoiceOn = false;
+        }
+    };
+
+    private final ViewTreeObserver.OnGlobalLayoutListener mOnGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
+        @Override
+        public void onGlobalLayout() {
+            resetFocusCursor();
+            mMainKeyboardView.getViewTreeObserver().removeOnGlobalLayoutListener(mOnGlobalLayoutListener);
         }
     };
 
@@ -1009,6 +1018,8 @@ public class LeanbackKeyboardContainer {
         } else {
             setShiftState(LeanbackKeyboardView.SHIFT_ON);
         }
+        mMainKeyboardView.getViewTreeObserver().removeOnGlobalLayoutListener(mOnGlobalLayoutListener);
+        mMainKeyboardView.getViewTreeObserver().addOnGlobalLayoutListener(mOnGlobalLayoutListener);
     }
 
     public void onTextEntry() {

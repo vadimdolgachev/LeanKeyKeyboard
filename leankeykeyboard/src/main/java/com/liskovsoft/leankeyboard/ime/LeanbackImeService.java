@@ -365,14 +365,19 @@ public class LeanbackImeService extends KeyMapperImeService {
     public void onStartInput(EditorInfo info, boolean restarting) {
         super.onStartInput(info, restarting);
         mEnterSpaceBeforeCommitting = false;
-        mSuggestionsFactory.onStartInput(info);
-        mKeyboardController.onStartInput(info);
+        if (!restarting) {
+            mSuggestionsFactory.onStartInput(info);
+            mKeyboardController.onStartInput(info);
+        }
     }
 
     @Override
     public void onStartInputView(EditorInfo info, boolean restarting) {
         super.onStartInputView(info, restarting);
 
+        if (restarting) {
+            return;
+        }
         mKeyboardController.onStartInputView(info);
         sendBroadcast(new Intent(IME_OPEN));
         if (mKeyboardController.areSuggestionsEnabled()) {

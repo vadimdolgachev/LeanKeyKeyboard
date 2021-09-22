@@ -610,6 +610,7 @@ public class LeanbackKeyboardView extends FrameLayout {
         setKeys(mKeyboard.getKeys());
         int state = mShiftState;
         mShiftState = -1;
+        mFocusIndex = -1;
         setShiftState(state);
         requestLayout();
         invalidateAllKeys();

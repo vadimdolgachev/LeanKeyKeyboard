@@ -791,8 +791,8 @@ public class LeanbackKeyboardController implements LeanbackKeyboardContainer.Voi
         mKeyDownReceived = false;
 
         if (mContainer != null) {
-            mContainer.onStartInputView();
             mContainer.onStartInput(info);
+            mContainer.onStartInputView();
         }
 
         mDoubleClickDetector.reset();
