@@ -81,7 +81,8 @@ public class LeanbackKeyboardView extends FrameLayout {
     protected int mKeyTextSize;
     protected int mModeChangeTextSize;
     private Drawable mCustomCapsLockDrawable;
-    private static final float LOWER_CASE_KEY_TRANSLATION_Y_FACTOR = -0.071f;
+    private static final float LOWER_CASE_KEY_TRANSLATION_X_FACTOR = -0.01f;
+    private static final float LOWER_CASE_KEY_TRANSLATION_Y_FACTOR = -0.075f;
 
     private static class KeyConverter {
         private static final int LOWER_CASE = 0;
@@ -252,8 +253,12 @@ public class LeanbackKeyboardView extends FrameLayout {
                 paint.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
             }
 
-            if (!TextUtils.isDigitsOnly(label) && !label.toUpperCase().equals(label)) {
-                canvas.translate(0, key.height * LOWER_CASE_KEY_TRANSLATION_Y_FACTOR);
+            if (TextUtils.isDigitsOnly(label)) {
+                canvas.translate(key.width * LOWER_CASE_KEY_TRANSLATION_X_FACTOR,
+                        0);
+            } else if (!label.toUpperCase().equals(label)) {
+                canvas.translate(key.width * LOWER_CASE_KEY_TRANSLATION_X_FACTOR,
+                        key.height * LOWER_CASE_KEY_TRANSLATION_Y_FACTOR);
             }
             canvas.drawText(
                     label,
