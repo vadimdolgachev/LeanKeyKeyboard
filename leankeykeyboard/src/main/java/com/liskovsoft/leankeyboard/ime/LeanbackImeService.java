@@ -364,8 +364,10 @@ public class LeanbackImeService extends KeyMapperImeService {
     @Override
     public void onStartInput(EditorInfo info, boolean restarting) {
         super.onStartInput(info, restarting);
-        mEnterSpaceBeforeCommitting = false;
-        if (!restarting) {
+
+        if (restarting) {
+            Log.d(TAG, "onStartInput: ");
+            mEnterSpaceBeforeCommitting = false;
             mSuggestionsFactory.onStartInput(info);
             mKeyboardController.onStartInput(info);
         }
